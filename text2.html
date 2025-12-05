@@ -1,8 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <body>
-        <h1>new file</h1>
-    </body>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SIET-LMS - Login</title>
+<link rel="icon" href="favi.jpg" type="image/jpeg" />
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif;
+  }
+  .container {
+    display: flex; height: 100vh; width: 100%;
+  }
+  .left-section {
+    flex: 1;
+    background-color: #004d00;
+    color: #ffff00;
+    padding: 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+    text-align: justify;
+  }
+  .left-section h1 {
+    font-size: 2.8rem; margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  .left-section p,
+  .left-section ul {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .left-section ul {
+    margin-left: 1.2rem;
+    margin-top: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .left-section ul li {
+    margin-bottom: 0.7rem;
+  }
+  .right-section {
+    flex: 1;
+    background-color: #f7e035;
+    display: flex; justify-content: center; align-items: center;
+    padding: 2rem;
+  }
+  .login-container {
+    background: #e6ffe6;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 128, 0, 0.2);
+    width: 100%; max-width: 400px;
+    text-align: center;
+  }
+  .login-logo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: block;
+    object-fit: contain;
+    background-color: white;
+  }
+  #error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  input[type="text"],
+  input[type="password"],
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+  input[type="text"],
+  input[type="password"] {
+    border: 2px solid #a3c65f;
+    background-color: #ffffff;
+  }
+  button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #388e3c;
+  }
+  .forgot-password {
+    text-align: right;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+  }
+  .forgot-password a {
+    color: #006400;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .left-section,
+    .right-section {
+      width: 100%;
+      padding: 2rem 1rem;
+    }
+    .left-section {
+      text-align: center;
+    }
+  }
+</style>
 </head>
+<body>
+  <div class="container">
+    <div class="left-section">
+      <h1>Welcome to SIET-LMS</h1>
+      <p>
+        The <strong>Sri Shakthi Institute of Engineering and Technology Learning Management System (SIET-LMS)</strong> 
+        is your dedicated online platform designed to elevate your programming skills and academic journey. 
+        SIET-LMS offers a comprehensive, user-friendly environment tailored to support your growth.
+      </p>
+      <p><strong>SIET - LMS Provides</strong></p>
+      <ul>
+        <li>A vast collection of carefully curated coding challenges and problems spanning various difficulty levels.</li>
+        <li>Real-time code compilation and execution to instantly test and validate your solutions.</li>
+        <li>Detailed progress tracking and personalized feedback to help you identify strengths and areas for improvement.</li>
+        <li>Resources and tools aligned with competitive programming and industry-relevant software development practices.</li>
+      </ul>
+    </div>
+    <div class="right-section">
+      <div class="login-container">
+        <img src="favi.jpg" alt="SIET-LMS Logo" class="login-logo" />
+        <div id="error-message">Invalid login, please try again.</div>
+        <form action="http://110.172.151.102/login/index.php" method="POST">
+          <input type="text" id="username" name="username" placeholder="Username" required />
+          <input type="password" id="password" name="password" placeholder="Password" required />
+          <div class="forgot-password">
+            <a href="http://110.172.151.102/login/forgot_password.php">Forgot Password?</a>
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("errorcode") === "3") {
+      document.getElementById("error-message").style.display = "block";
+    }
+  </script>
+</body>
 </html>
